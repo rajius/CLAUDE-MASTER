@@ -10,12 +10,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Work modularly.** Complete one section or task at a time. Report what you did, show results, and wait for review before proceeding.
 - **Iterate and fix errors yourself.** Run code, observe output, and fix problems before presenting results. Do not rely on the user to report errors back to you.
 - **Never claim something works without running a test to prove it.** After writing any code, immediately write and run a test. If you cannot test it, say so explicitly.
+- **Keep code simple.** Each notebook cell should do one operation for analysis. For data cleaning, a cell may combine up to three operations (e.g., mutate, select, filter in R). If you need more than one operation per analysis cell or more than three per cleaning cell, ask the user for explicit permission with a justification before proceeding.
+- **Comment every notebook cell.** Every code cell must have a markdown cell before and after it.
+  - **Before cell:** State the goal, the input, the output, and the operations. Format: "Create `[output]` from `[input]` by [operation(s)]."
+  - **After cell:** Discuss findings, flag anomalies, note interpretation, or record next steps. If the output is self-explanatory, a one-line confirmation is enough.
+  - **Example:**
+
+    > **Markdown cell (before):**
+    > Create `df` from `raw_df` by filtering rows where year >= 2020 and selecting columns city, population, and pkb_share.
+    >
+    > **Code cell:**
+    > `df <- raw_df %>% filter(year >= 2020) %>% select(city, population, pkb_share)`
+    >
+    > **Markdown cell (after):**
+    > df has 342 rows across 15 cities, as expected. No missing values in pkb_share.
 - **Use python3 and pip3.** Always use `python3` (not `python`) and `pip3` (not `pip`) for all commands.
 - **Ask about language preference.** At the start of any coding session, ask the user which programming language they prefer to use.
 - **Show your reasoning.** Always show the reasoning, sources, or evidence supporting your answers. Do not present conclusions without making the logic and supporting material visible.
 - **Commit and push after every major update.** After completing a significant piece of work (new script, analysis results, proposal revision, notebook update), stage the changes, commit with a descriptive message, and push to remote.
 - **Keep this file alive.** When a new situation reveals a missing rule, a recurring mistake, or a workflow pattern worth codifying, propose an update to this CLAUDE.md. Do not wait for the user to notice the gap.
-- **Maintain MEMORY.md.** Write and regularly update a `MEMORY.md` file in the project's `.claude/` memory directory. Record stable patterns, key architectural decisions, important file paths, user preferences, recurring solutions, and debugging insights. Organize entries by topic, not chronologically. Remove or correct outdated entries. Check existing memory before adding new entries to avoid duplication. Do not store session-specific or speculative information.
+- **Sync with master.** When a writing rule or convention is added or updated in a project's CLAUDE.md, apply the same change to the master file at `/Users/rajius/Documents/CLAUDE-MASTER/CLAUDE-MASTER.md`. The master file is the single source of truth for all projects.
+- **Maintain MEMORY.md.** Write and regularly update a `MEMORY.md` file in the project's `.claude/` memory directory. MEMORY.md tracks **project state** (current status, open tasks with priorities, decisions made, verified facts, review history, technical discoveries). It does NOT duplicate CLAUDE.md content (rules, style, conventions, folder structure). Organize entries by topic, not chronologically. Remove or correct outdated entries. Check existing memory before adding new entries to avoid duplication. Do not store session-specific or speculative information.
+- **Update projects-overview.md at end of session.** Before closing a session, update this project's entry in `/Users/rajius/.claude/projects/-Users-rajius-Documents-CLAUDE-MASTER/memory/projects-overview.md`. Update the Phase, Status, Next, and Blocked fields. Update the summary table row. Update the "Last updated" date. If the project is not yet listed, add a new entry.
+- **Auto-save before context runs out.** When the conversation is getting long and context compression is imminent, proactively: (1) update MEMORY.md with current project state, (2) update this project's entry in projects-overview.md, (3) stage, commit, and push all changes. Do not wait for the user to ask. Notify the user that you are wrapping up.
+- **Launch review agent (review-markdown.md)** After manual verification of a manuscript, ask if it is completed or user wants to continue with agent review.
 
 ## Writing Style
 
@@ -23,7 +41,7 @@ Follow McCloskey's *Economical Writing* principles in all writing (manuscripts, 
 
 - Write short, direct sentences. Cut unnecessary words. Active voice over passive voice.
 - Prefer concrete language over abstractions. Name the thing.
-- **Never use "this", "these", "that", or "those" as standalone pronouns.** Always follow with a noun (e.g., "This result shows…" not "This shows…").
+- **Never use "this", "these", "that", or "those" as lazy pointers.** Even with a noun, vague combinations like "this problem", "this issue", "this limitation" force the reader to look back. Name the specific thing (e.g., "the safety gap" not "this problem", "the cold start constraint" not "this limitation"). After drafting, scan for all instances of this/these/that/those and replace every non-relative-pronoun use with the concrete referent. Only relative pronouns ("the app that routes…", "data that do not…") should remain.
 - Use em dashes sparingly only if its merit the space. Use parentheses, commas, periods, or colons instead. When in doubt, use a period.
 - Never state the same argument twice in opposite directions (e.g., "X improves Y" followed by "without X, Y suffers"). Make the point once, well.
 - Do not stack parallel constructions. Three bullet points with identical grammatical structure reads as AI-generated.
