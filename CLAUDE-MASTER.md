@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Do not oversell.** Treat every assertion as something the reader will challenge. If you cannot defend a claim with evidence or a concrete example, soften or remove it.
 - **No AI-sounding prose.** Avoid parallel tricolons, dramatic closers, balanced clause structures, and rhetorical flourishes. Write plain sentences. If a passage sounds like a TED talk slide, rewrite it.
 - **Work modularly.** Complete one section or task at a time. Report what you did, show results, and wait for review before proceeding.
+- **Plan before building.** For any task with 3+ steps or architectural decisions, enter plan mode first. If something goes wrong mid-task, stop and re-plan — do not keep pushing a failing approach.
 - **Iterate and fix errors yourself.** Run code, observe output, and fix problems before presenting results. Do not rely on the user to report errors back to you.
 - **Never claim something works without running a test to prove it.** After writing any code, immediately write and run a test. If you cannot test it, say so explicitly.
 - **Keep code simple.** Each notebook cell should do one operation for analysis. For data cleaning, a cell may combine up to three operations (e.g., mutate, select, filter in R). If you need more than one operation per analysis cell or more than three per cleaning cell, ask the user for explicit permission with a justification before proceeding.
@@ -44,7 +45,7 @@ Follow McCloskey's *Economical Writing* principles in all writing (manuscripts, 
 - Write short, direct sentences. Cut unnecessary words. Active voice over passive voice.
 - Prefer concrete language over abstractions. Name the thing.
 - **Never use "this", "these", "that", or "those" as lazy pointers.** Even with a noun, vague combinations like "this problem", "this issue", "this limitation" force the reader to look back. Name the specific thing (e.g., "the safety gap" not "this problem", "the cold start constraint" not "this limitation"). After drafting, scan for all instances of this/these/that/those and replace every non-relative-pronoun use with the concrete referent. Only relative pronouns ("the app that routes…", "data that do not…") should remain.
-- Use em dashes sparingly only if its merit the space. Use parentheses, commas, periods, or colons instead. When in doubt, use a period. After drafting, scan for every em dash and assess whether it merits the space. Replace with a period, comma, colon, or parentheses unless the em dash signals an interruption the reader must not skip.
+- Use em dashes only when they merit the space. Use parentheses, commas, periods, or colons instead. When in doubt, use a period. After drafting, scan for every em dash and assess whether it merits the space. Replace with a period, comma, colon, or parentheses unless the em dash signals an interruption the reader must not skip.
 - Never state the same argument twice in opposite directions (e.g., "X improves Y" followed by "without X, Y suffers"). Make the point once, well.
 - Do not stack parallel constructions. Three bullet points with identical grammatical structure reads as AI-generated.
 - Remove adverbs (directly, precisely, extremely, etc.) unless they change the meaning.
@@ -52,6 +53,7 @@ Follow McCloskey's *Economical Writing* principles in all writing (manuscripts, 
 - No dramatic two-sentence contrasts ("X does this. Y does not."). Combine into one sentence.
 - Avoid overusing bullet points. Prefer flowing prose where appropriate.
 - For every abbreviation, spell out the full name on first use.
+- **Introduce before you use.** Never use a technical term, concept, or abbreviation before defining or introducing it. After every manuscript update, scan the full document to verify no term appears before its introduction.
 - Flag uncertainties and present alternative interpretations when relevant.
 - When reviewing an opening paragraph, check that it answers three questions: (1) Who is hurting? (2) How much does it cost them? (3) What happens if we do nothing?
 - Any reference cited must be verified via Google Scholar. Collect the Google Scholar links and list them at the end of the document for manual checking.
