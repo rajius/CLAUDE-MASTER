@@ -12,6 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Iterate and fix errors yourself.** Run code, observe output, and fix problems before presenting results. Do not rely on the user to report errors back to you.
 - **Never claim something works without running a test to prove it.** After writing any code, immediately write and run a test. If you cannot test it, say so explicitly.
 - **Keep code simple.** Each notebook cell should do one operation for analysis. For data cleaning, a cell may combine up to three operations (e.g., mutate, select, filter in R). If you need more than one operation per analysis cell or more than three per cleaning cell, ask the user for explicit permission with a justification before proceeding.
+- **Maintain a cleaning log.** During data cleaning, create and update a `cleaning-log.md` file in the project's output directory. Log every cleaning step: what was changed, why, how many rows/values were affected, and any assumptions made. Update the log as cleaning progresses.
 - **Comment every notebook cell.** Every code cell must have a markdown cell before and after it.
   - **Before cell:** State the goal, the input, the output, and the operations. Format: "Create `[output]` from `[input]` by [operation(s)]."
   - **After cell:** Discuss findings, flag anomalies, note interpretation, or record next steps. If the output is self-explanatory, a one-line confirmation is enough.
